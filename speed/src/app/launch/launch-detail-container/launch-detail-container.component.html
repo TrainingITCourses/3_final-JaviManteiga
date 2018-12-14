@@ -1,0 +1,6 @@
+<div *ngIf="launch as data; else loading">
+    <app-launch-data [data]="data"></app-launch-data>
+</div>
+<ng-template #loading>
+    Cargando datos...
+</ng-template>

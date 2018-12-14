@@ -1,0 +1,8 @@
+<div>
+  <app-order-options-launch-results (changeOrder)="changeLaunchsOrder($event)"></app-order-options-launch-results>
+  <app-launch-results [data]="launches$ | async"></app-launch-results>
+  <app-launch-results-count [count]="(launches$ | async) ? (launches$ | async)?.length : 0"></app-launch-results-count>
+</div>
+<div style="margin-bottom:25px">
+  <a href="/status">Volver</a>
+</div>

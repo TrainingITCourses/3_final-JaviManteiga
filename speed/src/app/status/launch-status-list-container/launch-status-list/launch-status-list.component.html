@@ -1,0 +1,10 @@
+<div>
+  Estados de lanzamientos
+  <ul *ngIf="data?.length>0">
+    <li *ngFor="let item of data">
+      <a [routerLink]="['/status', item.id,'launches']">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</div>
