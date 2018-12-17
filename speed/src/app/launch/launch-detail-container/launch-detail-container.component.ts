@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalState } from 'src/app/reducers';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LoadLaunches } from 'src/app/reducers/launch/launch.actions';
 import { map } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
@@ -22,7 +21,6 @@ export class LaunchDetailContainerComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = params.get('id'));
-    this.loadData();
     this.global.select('launch').pipe(map(x => x.launches.filter(l => l.id == +this.id))).subscribe(x => this.launch = x[0]);
   }
 
@@ -30,7 +28,4 @@ export class LaunchDetailContainerComponent implements OnInit {
     this._location.back();
   }
 
-  private loadData() {
-    this.global.dispatch(new LoadLaunches());
-  }
 }
