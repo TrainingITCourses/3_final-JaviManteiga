@@ -13,7 +13,7 @@ export interface GlobalState {
 export const reducers: ActionReducerMap<GlobalState> = {
   router: routerReducer,
   status: fromStatus.reducer,
-  launch: fromLaunch.reducer
+  launch: fromLaunch.reducer,
 };
 
 

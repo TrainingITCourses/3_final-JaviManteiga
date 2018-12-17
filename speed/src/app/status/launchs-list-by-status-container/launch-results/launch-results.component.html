@@ -1,9 +1,8 @@
-<h2>Lanzamientos en el estado seleccionado</h2>
 <div>
-    <ul *ngIf="data?.length>0">
-      <li *ngFor="let item of data">
-        <a [routerLink]="['/launch', item.id]">{{item.name}}</a>
-        {{item.net}}
-      </li>
-    </ul>
-  </div>
+  <ul *ngIf="data?.length>0">
+    <li *ngFor="let item of data">
+      <a [routerLink]="['/launch', item.id]">{{item.name}}</a>
+      {{item.net}}
+    </li>
+  </ul>
+</div>

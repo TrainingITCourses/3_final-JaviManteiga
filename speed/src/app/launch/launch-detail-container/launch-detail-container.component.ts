@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalState } from 'src/app/reducers';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { LoadLaunches } from 'src/app/reducers/launch/launch.actions';
 import { map } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-launch-detail-container',
@@ -17,7 +17,8 @@ export class LaunchDetailContainerComponent implements OnInit {
 
   public id: string;
 
-  constructor(private global: Store<GlobalState>, private route: ActivatedRoute) { }
+  constructor(private global: Store<GlobalState>, private route: ActivatedRoute,
+     private _location: Location) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = params.get('id'));
@@ -25,8 +26,10 @@ export class LaunchDetailContainerComponent implements OnInit {
     this.global.select('launch').pipe(map(x => x.launches.filter(l => l.id == +this.id))).subscribe(x => this.launch = x[0]);
   }
 
-  // Cargamos los datos porque puede que no hayan sido cargados anteriormente
-  // PWA evitara multiples llamadas
+  public clickBackLink() {
+    this._location.back();
+  }
+
   private loadData() {
     this.global.dispatch(new LoadLaunches());
   }

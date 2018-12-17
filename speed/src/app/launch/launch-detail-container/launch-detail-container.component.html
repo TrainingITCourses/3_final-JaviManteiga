@@ -1,5 +1,16 @@
 <div *ngIf="launch as data; else loading">
+
+    <app-status-bar>
+        <p>
+            Nombre del lanzamiento: {{data.name}}
+        </p>
+    </app-status-bar>
+
     <app-launch-data [data]="data"></app-launch-data>
+
+    <div style="margin-bottom:25px">
+        <a (click)="clickBackLink()" [routerLink]="">Volver</a>
+    </div>
 </div>
 <ng-template #loading>
     Cargando datos...

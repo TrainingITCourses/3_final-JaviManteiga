@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { LaunchRoutingModule } from './launch-routing.module';
 import { LaunchDetailContainerComponent } from './launch-detail-container/launch-detail-container.component';
 import { LaunchDataComponent } from './launch-detail-container/launch-data/launch-data.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    LaunchRoutingModule
+    LaunchRoutingModule,
+    SharedModule
   ],
   declarations: [LaunchDetailContainerComponent, LaunchDataComponent]
 })

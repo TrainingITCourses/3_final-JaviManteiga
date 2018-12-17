@@ -5,6 +5,7 @@ import { switchMap, map, toArray } from 'rxjs/operators';
 import { GlobalState } from 'src/app/reducers';
 import { Store } from '@ngrx/store';
 import { LoadLaunches } from 'src/app/reducers/launch/launch.actions';
+import { LoadStatuses } from 'src/app/reducers/status/status.actions';
 
 @Component({
   selector: 'app-launchs-list-by-status-container',
@@ -15,13 +16,18 @@ export class LaunchsListByStatusContainerComponent implements OnInit {
 
   public launches$: Observable<any[]>;
 
+  public status: any;
+
   public id: string;
 
   constructor(private global: Store<GlobalState>, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = params.get('id'));
-    this.loadData();
+    this.global.dispatch(new LoadStatuses());
+    this.global.dispatch(new LoadLaunches());
+    this.global.select(x => x.status).pipe(map(x => x.statuses.filter(l => l.id == +this.id)))
+          .subscribe(x => this.status = x[0]);
     this.launches$ = this.global.select('launch').pipe(map(x => x.launches.filter(l => l.status == +this.id)));
   }
 
@@ -52,10 +58,5 @@ export class LaunchsListByStatusContainerComponent implements OnInit {
       .subscribe(n => this.launches$ = of(n.sort(sortFn)));
   }
 
-
-
-  private loadData() {
-    this.global.dispatch(new LoadLaunches());
-  }
 
 }

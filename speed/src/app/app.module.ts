@@ -12,6 +12,7 @@ import { LaunchEffects } from './reducers/launch/launch.effects';
 import { StatusEffects } from './reducers/status/status.effects';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StatusBarComponent } from './shared/status-bar/status-bar.component';
 
 @NgModule({
   declarations: [

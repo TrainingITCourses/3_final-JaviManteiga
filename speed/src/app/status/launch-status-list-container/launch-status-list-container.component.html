@@ -1,3 +1,10 @@
+<div *ngIf="(launchesList$ | async)">
+  <app-status-bar>
+    <p>
+      Número de lanzamientos: {{(launchesList$ | async)?.length}}
+    </p>
+  </app-status-bar>
+</div>
 <div>
   <app-launch-status-list [data]="statusList$ | async"></app-launch-status-list>
 </div>
